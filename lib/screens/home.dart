@@ -67,11 +67,14 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                                     Text(
                                       "BM2\nCountDownTimer",
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                          fontSize: 20.0,
-                                          color: Colors.black54),
+                                      style: TextStyle(fontSize: 20.0,color: Colors.black54),
                                     ),
-                                    Text(timerString,style: TextStyle(fontSize: 100.0,color: Colors.black54),
+                                    Text(timerString,style: TextStyle(fontSize: 100.0,color: Colors.black54),),
+                                    FlatButton(
+                                      child: Text('RESET',style: TextStyle(fontSize: 20.0,color: Colors.black54),),
+                                      onPressed: (){
+                                        controller.reset();
+                                      },
                                     ),
                                   ],
                                 ),
