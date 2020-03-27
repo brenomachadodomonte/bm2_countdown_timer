@@ -11,7 +11,7 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
   bool isPlaying = false;
 
   String get timerString {
-    Duration duration = controller.duration * controller.value;
+    Duration duration = controller.duration * (controller.value == 0.0 ? 1 : controller.value);
     return '${duration.inMinutes}:${(duration.inSeconds % 60).toString().padLeft(2, '0')}';
   }
 
