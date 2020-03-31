@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:countdowntimer/widgets/painter.dart';
 
@@ -87,6 +88,12 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: <Widget>[
+                        FloatingActionButton(
+                          child: Icon(Icons.settings),
+                          onPressed: (){
+                            _showDialogSetup(context);
+                          },
+                        ),
                         FloatingActionButton.extended(
                           label: Text(isPlaying ? 'Pause' : 'Play'),
                           icon: Icon(isPlaying ? Icons.pause : Icons.play_arrow),
@@ -107,6 +114,57 @@ class _HomeState extends State<Home> with TickerProviderStateMixin {
                 ),
               );
           }),
+    );
+  }
+
+  void _showDialogSetup(BuildContext context){
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Center(
+            child: Text('Setup'),
+          ),
+          content: Container(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                CupertinoTimerPicker(
+                  mode: CupertinoTimerPickerMode.ms,
+                  minuteInterval: 1,
+                  secondInterval: 1,
+                  initialTimerDuration: controller.duration,
+                  onTimerDurationChanged: (Duration changedtimer) {
+                    setState(() {
+                      if(controller != null){
+                        controller.duration = changedtimer;
+                      }
+                    });
+                  },
+                ),
+                SizedBox(height: 10.0,),
+                Divider(),
+                Row(
+                  children: <Widget>[
+                    Expanded(
+                      flex: 1,
+                      child: FlatButton(
+                        child: Text(
+                          "CLOSE",
+                          style: TextStyle(color: Theme.of(context).primaryColor),
+                        ),
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            )
+          ),
+        );
+      },
     );
   }
 }
