@@ -1,4 +1,4 @@
-# Tic Tac Toe
+# CountDown Timer
 A simple CountDown Timer created in flutter.
 
 ## Screenshot
